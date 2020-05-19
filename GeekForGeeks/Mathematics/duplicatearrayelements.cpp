@@ -23,6 +23,23 @@ int removedup(int *p , int N)
     return j+1;
 }
 
+
+/*int remove_duplicate(int a[],int N)
+{
+    int j=0;
+    for(int i=1;i<N;i++)
+    {
+        if(a[i] != a[i-1])
+        {
+            j++;
+            a[j] = a[i];
+        }
+
+    }
+
+    return j+1;
+}*/
+
 int main()
 {
 
