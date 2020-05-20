@@ -32,7 +32,6 @@ int main()
     for(int i=0;i<D;i++)
     {
         int temp = a[i];int l;
-        cout<<temp<<" = temp"<<endl;
 
         for(int j=i;j<n;j+=D)
         {
@@ -41,7 +40,6 @@ int main()
         }
         a[l] = temp;
     }
-
 
 
     for(int i=0;i<n;i++)
