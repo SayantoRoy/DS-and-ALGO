@@ -1,13 +1,12 @@
 #include<iostream>
 using namespace std;
 
-void sumarraysum(int *a , int n, int s)
-{
+void subarraySum(int a[], int n, int s){
 
-    int j =a[0];int k = 0; int d =0;
-    for(int i=1;i<n;i++)
+    int j =a[0];int k = 0; int d =0; int i;
+    for( i=1;i<=n;i++)
     {
-        while(j>s && k<i-1)
+        while(j>s && k<i)
         {
             j = j - a[k];
             k++;
@@ -20,25 +19,16 @@ void sumarraysum(int *a , int n, int s)
             cout<<k+1<<" "<<i;
             break;
         }
-        cout<<j<<" before "<<endl;
         if(j<s)
         {
             j = j+a[i];
         }
-        cout<<j<<" after  "<<endl;
-
-
 
     }
-    if(j == s && d==0)
-    {
-         cout<<k+1<<" "<<i;
-    }
-    if(d==0 && j!=s)
+    if(d==0)
     {
         cout<<"-1";
     }
-
 }
 
 int main()
