@@ -1,24 +1,24 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
-vector<int> leaders(int arr[], int n){
+vector<int> leaders(int a[], int n){
 
+    int mx = -1000;
     vector<int> v;
-    if(arr[0]>arr[1])
+    for(int i = n-1;i>=0 ;i--)
     {
-        v.push_back(arr[0]);
-    }
-
-    for(int i=1;i<n-1;i++)
-    {
-        if(arr[i-1]<arr[i] && arr[i]>arr[i+1])
+        if(a[i]>=mx)
         {
-            v.push_back(arr[i]);
+            v.push_back(a[i]);
+            mx = a[i];
         }
     }
-    v.push_back(arr[n-1]);
-     return v;
+
+    reverse(v.begin(),v.end());
+
+    return v;
 
 }
 
