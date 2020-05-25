@@ -66,7 +66,7 @@ int findMissing(int arr[], int size)
 // Driver code
 int main()
 {
-	int arr[] = { 3, 10, 2, -10, -20 };
+	int arr[] = { 1, 10, 2, -10, -20 };
 	int arr_size = sizeof(arr) / sizeof(arr[0]);
 	int missing = findMissing(arr, arr_size);
 	cout << "The smallest positive missing number is " << missing;
