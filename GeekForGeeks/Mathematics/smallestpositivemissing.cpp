@@ -1,8 +1,20 @@
 #include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 int smallestmissin(int a[] , int n)
 {
+
+    int one = 0;
+
+    for(int i =0;i<n;i++)
+    {
+        if(a[i]==1)
+        {
+            one = 1;
+        }
+    }
+
     for(int i =0; i <n ;i++)
     {
         if(a[i]<1 || a[i]>n)
@@ -15,7 +27,7 @@ int smallestmissin(int a[] , int n)
     {
         int k = abs(a[i]) - 1;
 
-        if(a[k]!=-1)
+        if(a[k]>=1)
         {
             a[k] = a[k] * -1;
         }
@@ -23,6 +35,11 @@ int smallestmissin(int a[] , int n)
         {
             a[k] = a[k];
         }
+    }
+
+    if(one  == 0)
+    {
+        return 1;
     }
 
     for(int i = 0 ;i<n;i++)
