@@ -3,15 +3,38 @@ using namespace std;
 
 int trap(int *a, int n)
 {
+    int lm = 0;
+    int rm = 0;
+    int i = 0;
+    int j = n-1;
     int sum = 0;
-    int l = min(a[0] , a[n-1]);
 
-    for(int i =0;i<n;i++)
+    while(i<j)
     {
-        if(a[i]<l)
+        if(a[i]<a[j])
         {
-            int k = l - a[i];
-            sum = sum+k;
+            if(a[i]<lm)
+            {
+                sum = sum + (lm - a[i]);
+            }
+            else
+            {
+                lm = a[i];
+            }
+
+            i++;
+        }
+        else
+        {
+            if(a[j]<rm)
+            {
+                sum = sum + (rm - a[j]);
+            }
+            else
+            {
+                rm = a[j];
+            }
+            j--;
         }
     }
     return sum;
