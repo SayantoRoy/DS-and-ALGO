@@ -3,18 +3,18 @@ using namespace std;
 
 int main()
 {
-    enum class Doki {Sayanto , Anirek , Dudo , Ruby};
+    enum  Doki {Sayanto , Anirek , Dudo , Ruby};
     Doki a ;
-    a = Doki::Sayanto;
 
-    switch(a)
+    a = Anirek;
+
+    if(a!=Sayanto)
     {
-        case Doki::Sayanto: cout<<"It's Sayanto Here!!";break;
-
-        case Doki::Anirek: cout<<"It's Anirek Here!!";break;
-
-        case Doki::Dudo: cout<<"It's Dudo Here!!";break;
-
-        case Doki::Ruby: cout<<"It's Ruby Here!!";break;
+        cout<<"/\\ "<<endl;
+        cout<<"Sayanto is not Home"<<endl;
+    }
+    else
+    {
+        cout<<"Sayanto is Home!!";
     }
 }
