@@ -1,58 +1,39 @@
-#include<iostream>
+// C++ program to merge two sorted arrays with O(1) extra space.
+#include <bits/stdc++.h>
 using namespace std;
 
-void change(int *a , int i , int n , int k)
+
+void merge(int ar1[], int ar2[], int m, int n)
 {
 
-    for(int j = n-1;j>i;j--)
+    for (int i=n-1; i>=0; i--)
     {
-        a[j] = a[j-1];
-    }
 
-    a[i] = k;
-}
-void doki(int *a , int n , int k )
-{
-    for(int i = 0; i<n-1;i++)
-    {
-        if(a[i]<=k && k <a[i+1])
+        int j, last = ar1[m-1];
+        for (j=m-2; j >= 0 && ar1[j] > ar2[i]; j--)
+            ar1[j+1] = ar1[j];
+
+        if (j != m-2 || last > ar2[i])
         {
-            change(a , i+1 , n , k);
+            ar1[j+1] = ar2[i];
+            ar2[i] = last;
         }
     }
 }
 
-int main()
+int main(void)
 {
-    int n,m ;
-    cin>>n>>m;
+    int ar1[] = {1, 5, 9, 10, 15, 20};
+    int ar2[] = {2, 3, 8, 13};
+    int m = sizeof(ar1)/sizeof(ar1[0]);
+    int n = sizeof(ar2)/sizeof(ar2[0]);
+    merge(ar1, ar2, m, n);
 
-    int a[n];
-    int b[m];
-    for(int i =0;i<n;i++)
-    {
-        int k ;
-        cin>>k;
-        a[i] = k;
-    }
-    for(int j =0;j<m;j++)
-    {
-        int k;
-        cin>>k;
-        b[j] = k;
-    }
-
-    int k;
-    cin>>k;
-
-    doki(a ,n , k);
-
-    for(int i =0;i<n;i++)
-    {
-        cout<<a[i]<<" ";
-    }
-
-
-    return 0;
-
+    cout << "After Merging nFirst Array: ";
+    for (int i=0; i<m; i++)
+        cout << ar1[i] << " ";
+    cout << "nSecond Array: ";
+    for (int i=0; i<n; i++)
+        cout << ar2[i] << " ";
+   return 0;
 }
