@@ -6,7 +6,7 @@ struct node
     int data;
     struct node *next;
 }*head;
-//node *head = NULL;
+
 void inserts( int x)
 {
     node *temp = new node;
@@ -29,6 +29,33 @@ void inserts( int x)
     }
 }
 
+void insertatfront (int x)
+{
+    node* temp=new node;
+    temp->data = x;
+    temp->next = head;
+    head = temp;
+}
+
+void insertmid(int pos , int x)
+{
+    node *temp = new node;
+    temp->data = x;
+    temp->next = NULL;
+
+    node*p = head;
+    int l =1;
+    while(l<pos-1)
+    {
+        p = p->next;
+        l++;
+    }
+
+    temp->next = p->next;
+    p->next = temp;
+}
+
+
 void print(node *head)
 {
     node *p = new node;
@@ -45,12 +72,48 @@ int main()
 
     int n;
     cin>>n;
-    for(int i=0; i<n;i++)
+    cout<<"Enter 1 to insert front , 2 to Insert in end ";
+    int ch;
+    cin>>ch;
+    switch(ch)
     {
-        int k;
-        cin>>k;
-        inserts( k);
+        case 1:  for(int i=0; i<n;i++)
+                {
+                    int k;
+                    cin>>k;
+                    inserts( k);
+                }
+                break;
+        case 2: for(int i =0;i<n;i++)
+        {
+            int k;
+            cin>>k;
+            insertatfront( k);
+        }
+        break;
+
     }
+
+    cout<<"Enter 1 if you want to insert at middle " ;
+    int kk ;
+     cin>>kk;
+     if(kk==1)
+     {
+         int j;
+        cin>>j;
+        if(j<=n)
+        {
+            int k;
+        cin>> k;
+        insertmid(j , k);
+        }
+        else
+        {
+            cout<<"Not Possible"<<endl;
+        }
+
+     }
+
 
     print(head);
     return 0;
