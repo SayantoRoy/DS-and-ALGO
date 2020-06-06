@@ -36,31 +36,42 @@ void sorted(int x)
     node *temp =new node;
     temp->data = x;
     temp->next = NULL;
+    int check = 0;
 
     node *p = head;
-    node *l = new node;
-    //while(p->next!=head)
-    do
+    node *l = p;
+    while(p->next!=head)
     {
 
         if(p->data<= x && p->next->data > x)
         {
+            l = p;
             temp->next = p->next;
             p->next = temp;
+            check = 1;
             break;
         }
-        else if(p->data == head && p->data <= x)
+
+        else
         {
-            cout<<p->data<< " ";
-            temp->next = p->next;
-            p->next = temp;
+            l = p->next;
+            p = p->next;
+        }
+    }
+    if(check!=1)
+    {
+        if(l->data <= x)
+        {
+            temp->next = l->next;
+            l->next = temp;
         }
         else
         {
-
-            p = p->next;
+            temp->next = head;
+            head = temp;
+            l->next = head;
         }
-    }while(p!=head);
+    }
 
 
 }
