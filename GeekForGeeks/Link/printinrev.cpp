@@ -31,31 +31,17 @@ void inserts( int x)
     }
 }
 
-void printmid(node* head)
+
+
+void printrev(node *head)
 {
-    node *t = head;
-    node *h = head;
-    cout<<"HU";
-    while(h!=NULL&&h->next!=NULL)
+    if(head==NULL)
     {
-        t = t->next;
-        h = h->next->next;
+        return;
     }
 
-    cout<<t->data;
-}
-
-
-
-void print(node *head)
-{
-    node *p = new node;
-    p = head;
-    while(p!=NULL)
-    {
-        cout<<p->data<<" ";
-        p = p->next;
-    }
+    printrev(head->next);
+    cout<<head->data<<" " ;
 }
 
 int main()
@@ -71,7 +57,8 @@ int main()
         inserts( k);
     }
 
-    printmid(head);
+    printrev(head);
     return 0;
 
 }
+
