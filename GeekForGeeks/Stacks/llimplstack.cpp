@@ -1,43 +1,84 @@
 #include<iostream>
-#include<stack>
 using namespace std;
 
-void printStack(stack<int>s)
+struct node
 {
-    while(!s.empty())
+    int data;
+    node* next;
+};
+
+node* push(node* head , int x)
+{
+    node *temp = new node;
+    temp->data = x;
+    temp->next = NULL;
+    if(head == NULL)
     {
-        cout<<s.top()<<" ";
-        s.pop();
+        head = temp;
     }
-    cout<<endl;
+    else
+    {
+        temp->next = head;
+        head = temp;
+    }
+    return head;
+
 }
 
-void printit(stack<int>s)
+node* pop(node* head)
 {
-    if(s.empty())
-        return;
-
-    int x = s.top();
-    s.pop();
-    printit(s);
-
-    cout<<x<<" ";
-    s.push(x);
+    if(head==NULL)
+    {
+        cout<<"UnderFlow \n";
+    }
+    else
+    {
+        cout<<head->data<<" \n";
+        head = head->next;
+    }
+    return head;
 }
+
+void print(node* n)
+{
+    while (n != NULL) {
+        cout << n->data << " ";
+        n = n->next;
+    }
+}
+
 
 int main()
 {
-    stack<int> a;
+    node* head = NULL;
     int n;
     cin>>n;
-    for(int i=0;i<n;i++)
+    int d = 1;
+    while(d==1)
     {
-        int k;
-        cin>>k;
-        a.push(k);
+        cout<<"\n Enter 1 for push , 2 for pop and 3 for print"<<endl;
+        int ch;
+        cin>>ch;
+        switch(ch)
+        {
+            case 1: int k;
+                cin>>k;
+                head = push(head , k);
+                break;
+
+            case 2: head = pop(head);
+                    break;
+
+            case 3: print(head);
+                    break;
+
+            default: cout<<"No such choice"<<endl;
+                     break;
+
+        }
+
+        cout<<"\nIf you wanna do it again Press 1"<<endl;
+        cin>>d;
     }
-    cout<<"Stack from top to Bottom : "<<endl;
-    printStack(a);
-    cout<<"Stack from Bottom to Top : "<<endl;
-    printit(a);
+
 }
