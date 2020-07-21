@@ -1,21 +1,29 @@
 #include<iostream>
 #include<vector>
+#include<stack>
 using namespace std;
 
 vector<int> spanFind(vector<int> a)
 {
     int n = a.size();
     vector<int> s(n , 0);
-    for(int i =0;i<a.size();i++)
-    {
-        int j =1;
-        while(j<=i && a[i]>a[i-j])
-        {
-            j++;
+    stack<int> st;
 
+    st.push(0);
+    s[0] = 1;
+
+    for(int i =1; i<n;i++)
+    {
+        while(!st.empty() && a[st.top()] <= a[i])
+        {
+            st.pop();
         }
-        s[i] = j;
+
+        s[i] = (st.empty())? i+1 : i-st.top();
+
+        st.push(i);
     }
+
     return s;
 }
 
@@ -41,3 +49,4 @@ int main()
     }
     return 0;
 }
+
