@@ -13,7 +13,7 @@ void popit()
 {
     if(!b.empty())
     {
-        cout<<b.top()<<endl;
+        cout<<b.top();
         b.pop();
     }
     else
@@ -24,14 +24,21 @@ void popit()
             a.pop();
         }
 
+        if(b.empty())
+        {
+            cout<<"Queue Empty";
+        }
+        else{
         cout<<b.top();
         b.pop();
+        }
     }
+
+
 }
 int main()
 {
-    int n;
-    cin>>n;
+
     int k = 1;
     while(k==1)
     {
