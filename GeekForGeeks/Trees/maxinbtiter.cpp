@@ -1,5 +1,6 @@
 #include<iostream>
 #include<climits>
+#include<queue>
 using namespace std;
 
 struct node
@@ -16,15 +17,24 @@ struct node
 
 int maxintree(node* root)
 {
-    int rootVal , leftVal , rightVal,maxx = INT_MIN;
-    if(root)
+    int maxx = INT_MIN;
+    node *temp;
+    queue<node *>q;
+    q.push(root);
+    while(!q.empty())
     {
-        rootVal = root->data;
-        leftVal = maxintree(root->left);
-        rightVal = maxintree(root->right);
-
-        maxx = max(max(leftVal, rightVal),rootVal);
+        temp = q.front();
+        q.pop();
+        if(temp->left)
+            q.push(temp->left);
+        if(temp->right)
+            q.push(temp->right);
+        if(temp->data > maxx)
+        {
+            maxx = temp->data;
+        }
     }
+
     return maxx;
 }
 
@@ -34,7 +44,6 @@ int main()
     node *root = new node(1);
     root->left = new node(2);
     root->right = new node(3);
-    root->right->left = new node(31);
     root->left->left = new node(4);
     root->left->right = new node(5);
     root->right->left = new node(6);
