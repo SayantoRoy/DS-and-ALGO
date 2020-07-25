@@ -14,16 +14,7 @@ struct node{
 
 
 
-void printArray(vector<int> a)
-{
-    for(int i =0 ; i<a.size() ; i++)
-    {
-        cout<<a[i]<<" ";
-    }
-
-    cout<<endl;
-}
-
+//Recursive Way To Print It
 int sumOfTree(node *root)
 {
     if(root == NULL)
@@ -37,6 +28,32 @@ int sumOfTree(node *root)
 
 }
 
+//Iterative Way To Do It
+int sumOfTreei(node *root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+
+    queue<node*> q;
+    q.push(root);
+    int sum = 0;
+    node* temp;
+    while(!q.empty())
+    {
+        temp = q.front();
+        q.pop();
+        sum +=temp->data;
+        if(temp->left)
+            q.push(temp->left);
+        if(temp->right)
+            q.push(temp->right);
+    }
+
+    return sum;
+}
+
 
 int main()
 {
@@ -48,6 +65,9 @@ int main()
     root->right->left = new node(6);
     root->right->right = new node(100);
     cout<<"Sum of the tree : \n";
-    cout<<sumOfTree(root);
+    //Recursive
+    cout<<sumOfTree(root)<<endl;
+    //Iterative
+    cout<<sumOfTreei(root);
 }
 
