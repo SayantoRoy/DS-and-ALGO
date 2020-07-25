@@ -25,36 +25,21 @@ void mirror(node *root)
 
     queue<node*>q;
     q.push(root);
-    q.push(NULL);
     node* temp;
-    node *y = new node(-1);
     while(!q.empty())
     {
         temp = q.front();
         q.pop();
-        if(temp->data!=-1 && temp)
-        {
-            cout<<temp->data;
-        }
+        swap(temp->right , temp->left);
 
-        if(temp==NULL)
-        {
-            cout<<"asd";
-            if(!q.empty())
-                q.push(NULL);
-        }
-        else
-        {
-            if(temp->right)
-                q.push(temp->right);
-
-            if(temp->left)
-                q.push(temp->left);
-
+        if(temp->left)
+            q.push(temp->left);
+        if(temp->right)
+            q.push(temp->right);
 
 
         }
-    }
+
 
 }
 
@@ -80,6 +65,7 @@ int main()
     cout<<"\nMirror of the tree : \n";
     //Recursive
     mirror(root);
+    inorder(root);
 
 }
 
