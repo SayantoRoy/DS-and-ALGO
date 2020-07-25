@@ -13,6 +13,7 @@ struct node{
 };
 
 
+
 void printArray(vector<int> a)
 {
     for(int i =0 ; i<a.size() ; i++)
