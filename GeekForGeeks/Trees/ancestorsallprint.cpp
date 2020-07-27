@@ -1,4 +1,5 @@
 
+
 #include<iostream>
 #include<queue>
 #include<stack>
@@ -17,24 +18,19 @@ struct node
     }
 };
 
-void ancestors(node* root , vector<int>a)
+int ancestors(node* root)
 {
-    if(root)
+    if(root == NULL)
     {
-        a.push_back(root->data);
-        if(root->left)
-            ancestors(root->left , a);
-        if(root->right)
-            ancestors(root->right , a);
-
-        if(!root->left && !root->right)
-        {
-            for(int i =0 ;i<a.size();i++)
-                cout<<a[i]<<" ";
-            cout<<endl;
-            return;
-        }
+       return 0;
     }
+
+        if(root->left || root->right || ancestors(root->left) || ancestors(root->right))
+        {
+                cout<<root->data<<" ";
+                return 1;
+        }
+    return 0;
 
 }
 
@@ -52,8 +48,8 @@ int main()
     root->left->left->right = new node(9);
     root->right->left->left = new node(10);
     cout<<"Ancestors Print"<<endl;
-    vector<int>a;
-    ancestors(root , a);
+
+    int k = ancestors(root);
 
     return 0;
 }
