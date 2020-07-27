@@ -31,8 +31,16 @@ void ancestors(node* root , vector<int>a)
     else
     {
         a.push_back(root->data);
-        ancestors(root->left , a);
+        if(!root->left && !root->right)
+        {
+            ancestors(root->left , a);
+        }
+        else
+        {
+            ancestors(root->left , a);
         ancestors(root->right , a);
+        }
+
     }
 
 }
