@@ -16,7 +16,6 @@ int maxDept(int *a , int n)
         {
             if(v[j]!=-1)
             {
-                cout<<"Btichod"<<endl;
                 current = v[j] +1;
                 break;
             }
