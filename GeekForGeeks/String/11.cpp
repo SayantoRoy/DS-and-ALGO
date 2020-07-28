@@ -1,17 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+vector<string>s;
+
+int posI = -1;
+
+
 string outPut(int N)
 {
-    vector<string>s;
-    s.push_back("1");
     int i = 0;
-    int ll =-1;
-    while(i<N)
+
+    if(N > s.size())
     {
-        ll++;
-        string str = s[ll];
-        string str1 = s[ll];
+        while(i<N)
+    {
+        posI++;
+        string str = s[posI];
+        string str1 = s[posI];
         int l = str.length();
         if(str[l-1]=='1')
         {
@@ -28,12 +33,34 @@ string outPut(int N)
         }
     }
     return s[N-1];
+    }
+    else
+    {
+        return s[N-1];
+    }
+
+
+
 }
 
 int main()
 {
+    s.push_back("1");
     int n;
     cin>>n;
-    cout<<outPut(n);
+    for(int i= 0;i<n;i++)
+    {
+        int k;
+        cin>>k;
+        cout<<outPut(k);
+        cout<<endl;
+    for(int i =0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<endl;
+    }
+
+
     return 0;
 }
