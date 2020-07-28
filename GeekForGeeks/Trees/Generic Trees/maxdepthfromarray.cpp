@@ -1,8 +1,10 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 int maxDept(int *a , int n)
 {
+    vector<int>v(n,-1);
     int maxs, current;
     maxs = current = 0;
 
@@ -12,10 +14,19 @@ int maxDept(int *a , int n)
         current  = 0;
         while(a[j]!=-1)
         {
-            current++;
-            j = a[j];
+            if(v[j]!=-1)
+            {
+                cout<<"Btichod"<<endl;
+                current = v[j] +1;
+                break;
+            }
+            else
+            {
+                current++;
+                j = a[j];
+            }
         }
-
+        v[i] = current;
         if(maxs<current)
             maxs = current;
     }
