@@ -42,16 +42,21 @@ void inorder(node* root)
     }
 }
 
-node* lowestCommonAncestor(node* root , int a , int b)
+node* parentNode(node* root , int a , int b)
 {
-    if((root->data > a && root->data < b) || (root->data > b && root->data < a))
+    if((root->data > a && root->data < b) || (root->data > b && root->data < a)){
+       return root;
+    }
+    else if(root->data == a || root->data == b)
+    {
         return root;
+    }
     else
     {
         if(root->data > a)
-            lowestCommonAncestor(root->left , a, b);
+            parentNode(root->left , a, b);
         else
-            lowestCommonAncestor(root->right , a , b);
+            parentNode(root->right , a , b);
     }
 
 
@@ -74,8 +79,10 @@ int main()
     cout<<endl;
     int a, b;
     cin>>a>>b;
-    node* p = lowestCommonAncestor(root , a , b);
-    cout<<endl<<p->data;
+    node* p = parentNode(root , a , b);
+    cout<<"The Parent Node of both the nodes are : "<<p->data;
     return 0;
 }
+
+
 
