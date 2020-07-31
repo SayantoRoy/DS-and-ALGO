@@ -24,18 +24,23 @@ void inorder(node* root)
     }
 }
 
-int isBST(node* root)
+int isBST(node* root , int *prev)
 {
     if(!root)
         return 1;
-    if(root->left && root->left->data > root->data)
-        return 0;
-    if(root->right && root->right->data < root->data)
-        return 0;
-    if(!isBST(root->left) || !isBST(root->right))
+
+
+    if(!isBST(root->left , prev))
         return 0;
 
-    return 1;
+    if(root->data < *prev)
+        return 0;
+
+    *prev = root->data;
+
+    return isBST(root->right , prev);
+
+
 }
 
 int main()
@@ -57,5 +62,7 @@ int main()
     inorder(root);
 
     cout<<endl;
-    cout<<isBST(root);
+    int j =INT_MIN;
+    int *prev = &j;
+    cout<<isBST(root , prev);
 }
