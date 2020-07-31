@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -73,8 +72,9 @@ int main()
     inorder(root);
     cout<<endl;
     int a, b;
-    cin>>a , b;
+    cin>>a>>b;
     node* p = lowestCommonAncestor(root , a , b);
     cout<<endl<<p->data;
     return 0;
 }
+
