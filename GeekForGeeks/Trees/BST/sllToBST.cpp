@@ -74,8 +74,9 @@ node* buildBST(sl* head)
         temp->data = head->data;
         temp->left = temp->right = NULL;
     }
-
-    sl* j = findMid(head);
+    else
+    {
+        sl* j = findMid(head);
     sl* p = head;
     while(p->next!=j)
     {
@@ -86,8 +87,10 @@ node* buildBST(sl* head)
     p = j->next;
 
     temp->data = j->data;
-    temp->left = buildBST(head );
+    temp->left = buildBST(head);
     temp->right = buildBST(p);
+    }
+
 
     return temp;
 
@@ -126,11 +129,12 @@ int main()
     }
 
     display();
+    cout<<endl;
 
     node* root = buildBST(head);
 
     inorder(root);
-    cout<<"\nPreorder : \n";
+    cout<<endl;
     preorder(root);
 
     return 0;
