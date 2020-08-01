@@ -16,7 +16,7 @@ dl* insertDL(dl* head , int x)
     if(!head)
     {
         head = temp;
-        temp->prev = head;
+        temp->prev = NULL;
     }
     else
     {
@@ -71,8 +71,11 @@ dl* findMid(dl* head)
 
 dl* buildTree(dl* head)
 {
-    if(!head || !head->next)
+    if(!head->next || !head)
+    {
+        head->prev = NULL;
         return head;
+    }
 
     dl* temp = findMid(head);
     dl* p = head;
@@ -91,6 +94,18 @@ dl* buildTree(dl* head)
     temp->next = buildTree(p);
 
     return temp;
+
+}
+
+void displayTree(dl* head)
+{
+    if(head)
+    {
+
+        cout<<head->data<<" ";
+        displayTree(head->prev);
+        displayTree(head->next);
+    }
 }
 
 int main()
@@ -109,7 +124,9 @@ int main()
     cout<<endl;
 
     head = buildTree(head);
-    display(head);
+    cout<<endl;
+    cout<<"Pre Order Traversal of the Tree : "<<endl;
+    displayTree(head);
     return 0;
 
 }
