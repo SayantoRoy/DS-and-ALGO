@@ -42,44 +42,42 @@ void inorder(node* root)
     }
 }
 
-/*int floorValue(node* root ,int k)
+/*int ceilValue(node* root ,int k)
 {
     if(!root){
-        return 0;
+        return -1;
     }
     if(root->data ==k)
     {
         return root->data;
     }
-    if(root->data > k)
+    if(root->data < k)
     {
-        return floorValue(root->left , k);
+        return ceilValue(root->right , k);
     }
 
-    int floor = floorValue(root->right , k);
+    int ceil = ceilValue(root->left , k);
 
-    return (floor <= root->data && root->data <=k)? root->data : floor;
+    return (ceil >=k)? ceil  : root->data;
 
 }*/
-
-node* floorValue(node* root , int k)
+node* ceilValue(node* root , int k)
 {
     node* temp = NULL;
     while(root)
     {
-        if(root->data <= k)
+        if(root->data >= k)
         {
             temp = root;
-            root= root->right;
+            root= root->left;
         }
         else
         {
-            root = root->left;
+            root = root->right;
         }
     }
     return temp;
 }
-
 int main()
 {
     int n;
@@ -97,7 +95,7 @@ int main()
     cout<<endl;
     int k;
     cin>>k;
-    cout<<floorValue(root , k)->data;
+    cout<<ceilValue(root , k)->data;
     return 0;
 }
 
