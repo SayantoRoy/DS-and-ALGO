@@ -10,14 +10,14 @@ struct node
     node* right;
 };
 
-int noOfNodes(int n)
+int noOfShapes(int n)
 {
     if(n==1)
         return 2;
     if(n==0)
         return 1;
 
-    return 1+noOfNodes(n-1) + noOfNodes(n-2);
+    return 2*noOfShapes(n-1) * noOfShapes(n-2);
 
 }
 
@@ -35,8 +35,9 @@ int main()
 {
     int n;
     cin>>n;
-   int j = noOfNodes(n);
-    cout<<"Nodes in Minimal AVL in numbers"<<j;
+   int j = noOfShapes(n);
+    cout<<"Number of shapes in Minimal AVL in numbers : \n"<<j;
     return 0;
 
 }
+
