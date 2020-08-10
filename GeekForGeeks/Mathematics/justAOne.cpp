@@ -48,9 +48,16 @@ int main(void) {
   /* Note: In C++ you first have to initialize an array and set
      it equal to the stdin to test your code with arrays. */
 
-  int A[] = gets(stdin);
-  int arrLength = sizeof(A) / sizeof(*A);
-  cout << ArrayChallenge(A, arrLength);
+     int n;
+     cin>>n;
+  int A[n];
+  for(int i =0 ;i<n;i++)
+  {
+      int k;
+      cin>>k;
+      A[i] = k;
+  }
+  cout <<"The maximum profit that can be made is : \n" <<ArrayChallenge(A, n);
   return 0;
 
 }
