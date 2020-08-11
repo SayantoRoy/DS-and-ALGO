@@ -104,25 +104,35 @@ node* Insert(node* root, int x)
 
 void preorder(node* root)
 {
+
+
     if(root)
     {
         cout<<root->data<<" ";
         preorder(root->left);
         preorder(root->right);
     }
+
 }
 
-node* removeLeaf(node* root)
+node* removeRange(node* root, int a , int b)
 {
     if(!root)
         return NULL;
 
-    if(root->left == NULL && root->right ==NULL)
-        return NULL;
-    root->left = removeLeaf(root->left);
-    root->right = removeLeaf(root->right);
 
-    return root;
+
+    root->left = removeRange(root->left , a, b);
+    root->right = removeRange(root->right , a , b);
+
+    if(a<=root->data && root->data<=b)
+        return root;
+    if(root->data < a)
+        return root->right;
+    if(root->data > b)
+        return root->left;
+
+
 }
 
 int main()
@@ -138,8 +148,13 @@ int main()
     }
 
     preorder(root);
-    root = removeLeaf(root);
-    cout<<"\nAfter Removing Leaf Nodes : \n";
+    int a , b;
+    cout<<"\nEnter the range : \n";
+    cin>>a>>b;
+
+    root = removeRange(root, min(a,b) , max(a,b));
+    cout<<"\nAfter Removing Non Range Nodes : \n";
     preorder(root);
     return 0;
 }
+
