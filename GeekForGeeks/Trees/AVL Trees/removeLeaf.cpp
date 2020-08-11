@@ -112,17 +112,24 @@ void preorder(node* root)
     }
 }
 
-node* removeLeaf(node* root)
+node* removeRange(node* root, int a , int b)
 {
     if(!root)
         return NULL;
 
-    if(root->left == NULL && root->right ==NULL)
-        return NULL;
-    root->left = removeLeaf(root->left);
-    root->right = removeLeaf(root->right);
 
-    return root;
+
+    root->left = removeRange(root->left , a, b);
+    root->right = removeRange(root->right , a , b);
+
+    if(a<=root->data && root->data<=b)
+        return root;
+    if(root->data < a)
+        return root->right;
+    if(root->data > b)
+        return root->left;
+
+
 }
 
 int main()
@@ -138,7 +145,10 @@ int main()
     }
 
     preorder(root);
-    root = removeLeaf(root);
+    int a , b;
+    cin>>a>>b;
+
+    root = removeRange(root, min(a,b) , max(a,b));
     cout<<"\nAfter Removing Leaf Nodes : \n";
     preorder(root);
     return 0;
