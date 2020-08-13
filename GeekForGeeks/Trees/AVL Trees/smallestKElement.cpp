@@ -111,6 +111,25 @@ void preorder(node* root)
     }
 }
 
+int  smallestKElement(node* root , int &k)
+{
+    if(!root)
+        return 0;
+
+    int left = smallestKElement(root->left , k);
+    cout<<root->data<<" ";
+    if(left!= 0)
+        return left;
+    k--;
+
+    if(k==0)
+        return root->data;
+
+
+    return smallestKElement(root->right , k);
+
+}
+
 int main()
 {
     int n;
@@ -124,5 +143,9 @@ int main()
     }
 
     preorder(root);
+    int k;
+    cin>>k;
+
+    cout<<endl<<smallestKElement(root , k);
     return 0;
 }
