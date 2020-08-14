@@ -58,8 +58,7 @@ void heapify(heap* h, int i)
     int l , r , maxs ,swapEl;
     l = leftChild(h , i);
     r = rightChild(h , i);
-
-    if(l!=-1 && h->array[l] > h->array[i])
+    if(l!=-1 && h->array[i] < h->array[l])
     {
         maxs = l;
     }
@@ -72,18 +71,19 @@ void heapify(heap* h, int i)
         maxs = r;
     }
 
-    if(maxs!=i)
+    if(maxs!= i)
     {
-        swapEl = h->array[i];
-        h->array[i] = h->array[maxs];
-        h->array[maxs] = swapEl;
+        swap(h->array[i] ,h->array[maxs]);
+        heapify(h , maxs);
     }
     else
     {
-        maxs = i++;
+        i++;
+        if(i>=h->capacity)
+            return;
+        else
+            heapify(h , i);
     }
-    cout<<maxs<<" "<<h->array[i];
-    heapify(h , maxs);
 }
 
 void printHeap(heap *h)
