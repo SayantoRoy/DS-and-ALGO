@@ -86,6 +86,14 @@ void heapify(heap* h, int i)
     }
 }
 
+void deleteMax(heap* h)
+{
+    int temp = h->array[0];
+    h->array[0] = h->array[h->capacity-1];
+    h->capacity--;
+    heapify(h , 0);
+}
+
 void printHeap(heap *h)
 {
     int n = h->capacity;
@@ -110,6 +118,9 @@ int main()
     heap* p = create(n , a);
     printHeap(p);
     heapify(p,0);
+    cout<<endl;
+    printHeap(p);
+    deleteMax(p);
     cout<<endl;
     printHeap(p);
 }
