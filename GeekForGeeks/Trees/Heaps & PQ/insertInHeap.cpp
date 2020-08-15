@@ -16,11 +16,10 @@ vector<int> heapify(vector<int> a , int i)
 
     if(maxs!= i)
     {
-        cout<<a[i]<< " "<<a[maxs]<<endl;
         swap(a[i] , a[maxs]);
-        cout<<a[i]<< " "<<a[maxs]<<endl;
-        heapify(a , maxs);
+        a = heapify(a , maxs);
     }
+
     return a;
 }
 
@@ -32,10 +31,9 @@ vector<int> insert(vector<int> a , int x)
     for(int i = (n/2 -1) ; i>=0;i--)
     {
         a = heapify(a , i);
-        cout<<a[i]<<" "<<endl;
     }
 
-
+    a = heapify(a , 0);
     return a;
 }
 
