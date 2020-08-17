@@ -4,20 +4,27 @@ using namespace std;
 int Find(int a[] , int n , int s)
 {
     if(s<0 || s>=n)
-        return -1;
-    if(a[s]==s)
+        return INT_MIN;
+    if(a[s]==-1 || a[s]<-1)
         return s;
     Find(a , n , a[s]);
 }
 
 void Union(int a[] , int n , int x, int y)
 {
-    if(Find(a,n,x) == Find(a,n,y))
+    if((Find(a,n,x))==(Find(a,n,y)) && Find(a,n,x)==-1)
         return;
-    if(!(x>0&&x<n) && (y>0&&y<n))
-        return;
-    cout<<"rep - "<<a[x]<<y<<endl;
-    a[x] = y;
+
+    if(a[x] < a[y])
+    {
+        a[x] +=a[y];
+        a[y] = x;
+    }
+    else
+    {
+        a[y] +=a[x];
+        a[x] = y;
+    }
 }
 
 int main()
@@ -27,7 +34,7 @@ int main()
     int a[n];
     for(int i = 0;i<n;i++)
     {
-        a[i] = i;
+        a[i] = -1;
     }
     int k;
     do
