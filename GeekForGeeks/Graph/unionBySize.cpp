@@ -15,15 +15,15 @@ void Union(int a[] , int n , int x, int y)
     if((Find(a,n,x))==(Find(a,n,y)) && Find(a,n,x)==-1)
         return;
 
-    if(a[x] < a[y])
+    if(a[y] < a[x])
     {
-        a[x] +=a[y];
-        a[y] = x;
+        a[x] =y;
+        a[y] += a[x];
     }
     else
     {
-        a[y] +=a[x];
-        a[x] = y;
+        a[y] =x;
+        a[x] += a[y];
     }
 }
 
