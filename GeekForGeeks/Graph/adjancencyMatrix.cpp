@@ -3,11 +3,7 @@ using namespace std;
 
 void makeMatrix(int n , int **a , int n1, int n2 )
 {
-    if(n1 < n && n2 < n)
-    {
-        a[n1][n2] = 1;
-        a[n2][n1] = 1;
-    }
+
 
 }
 
@@ -27,7 +23,15 @@ int main()
 {
     int n;
     cin>>n;
-    int a[n][n] = {0};
+    int a[n][n];
+    for(int i =0;i<n;i++)
+    {
+        for(int j = 0; j<n;j++)
+        {
+            a[i][j] = 0;
+        }
+    }
+    int k;
     do
     {
         int ch;
@@ -36,10 +40,36 @@ int main()
 
         switch(ch)
         {
-            case 1: int a; int b;
-            cin>>a>>b;
-            makeMatrix(&a , a , b , n);
+            case 1: int a1; int b;
+            cin>>a1>>b;
+            if(a1 < n && b < n)
+            {
+                if(a[a1][b]==1)
+                {
+                    cout<<"Already Connected"<<endl;
+                }
+                else
+                {
+                    a[a1][b] = 1;
+                    a[b][a1] = 1;
+                }
+
+            }
             break;
+
+            case 2:
+                for(int i = 0 ; i<n;i++)
+                {
+                    for(int j = 0; j<n;j++)
+                    {
+                        cout<<a[i][j]<<" ";
+                    }
+                    cout<<endl;
+                }
         }
-    }
+
+        cout<<"Enter 1 to Continue : ";
+        cin>>k;
+        cout<<endl;
+    }while(k==1);
 }
