@@ -3,7 +3,7 @@ using namespace std;
 
 int Find(int a[] , int n , int s)
 {
-    if(s<0 || s>=n)
+    if(s<0 || s>n-1)
         return INT_MIN;
     if(a[s]==-1 || a[s]<-1)
         return s;
