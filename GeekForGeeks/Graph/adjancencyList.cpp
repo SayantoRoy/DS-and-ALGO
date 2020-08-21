@@ -11,6 +11,7 @@ void printConnections(vector<int> v[] , int n)
 {
     for(int i =0 ;i<n;i++)
     {
+        cout<<"The Vertex is : "<<i<<endl;
         for(auto x : v[i])
             cout<<x<<" - ";
     cout<<endl;
