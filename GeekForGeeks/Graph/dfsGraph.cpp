@@ -1,9 +1,18 @@
-#include<bits/bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 void dfs(int** edges , int n , int s , bool* visited)
 {
     cout<<s<<endl;
+    visited[s] = true;
+
+    for(int i = 0; i<n;i++)
+    {
+        if(edges[s][i]==1 && !visited[i])
+        {
+            dfs(edges , n, i , visited);
+        }
+    }
 
 }
 
@@ -14,7 +23,7 @@ int main()
     int** edges = new int*[v];
     for(int i =0; i<v;i++)
     {
-        edges[i] = new int[n];
+        edges[i] = new int[v];
         for(int j =0;j<v;j++)
         {
             edges[i][j] = 0;
