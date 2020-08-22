@@ -12,7 +12,11 @@ void dfs (int** edges , int n , bool* visited)
     {
         int k = s.top();
         s.pop();
-        visited[k] = true;
+        if(!visited[k])
+        {
+           visited[k] = true;
+           cout<<k<<" ";
+        }
 
         for(int i =0;i<n;i++)
         {
@@ -22,7 +26,7 @@ void dfs (int** edges , int n , bool* visited)
             }
         }
 
-        cout<<k<<" ";
+
     }
 }
 
