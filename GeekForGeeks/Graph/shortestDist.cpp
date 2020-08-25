@@ -18,11 +18,9 @@ void printDist(vector<int>a[] , int v , int src, int dst)
         q.pop();
         for(int i = 0 ;i<a[j].size() ; i++)
         {
-            cout<<a[j][i]<<" - "<<dist[a[j][i]]<<endl;
             if(dist[a[j][i]] == -1)
             {
                 dist[a[j][i]] = dist[j]+1;
-                cout<<a[j][i]<<" - "<<dist[a[j][i]]<<endl;
                 q.push(a[j][i]);
 
                  if(a[j][i] == dst)
