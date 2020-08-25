@@ -37,7 +37,7 @@ void dijkstraAlgo(int **edges ,int v , int src)
         visited[i] = true;
         for(int j = 0; j<v;j++)
         {
-            if(!visited[j])
+            if(!visited[j] && edges[i][j]!=0)
             {
                 int k = dist[i] + edges[i][j];
                 if(k < dist[j])
