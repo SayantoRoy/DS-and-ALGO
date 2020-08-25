@@ -33,11 +33,12 @@ void dijkstraAlgo(int **edges ,int v , int src)
 
     for(int i = 0; i<v ; i++)
     {
+        if(!visited[i]){
         int minVertex = getMinimum(dist , visited , v);
-        visited[i] = true;
+
         for(int j = 0; j<v;j++)
         {
-            if(!visited[j] && edges[i][j]!=0)
+            if(edges[i][j]!=0)
             {
                 int k = dist[i] + edges[i][j];
                 if(k < dist[j])
@@ -46,6 +47,8 @@ void dijkstraAlgo(int **edges ,int v , int src)
                 }
             }
         }
+        visited[i] = true;
+    }
     }
 
     cout<<"The minimum distances are : \n";
