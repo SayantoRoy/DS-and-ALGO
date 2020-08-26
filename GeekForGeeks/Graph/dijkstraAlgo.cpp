@@ -4,18 +4,15 @@ using namespace std;
 
 int getMinimum(int *dist, bool *visited , int v)
 {
-    int min = INT_MAX;
-    for(int i = 0; i<v;i++)
+    int minVertex = -1;
+    for(int i =0 ;i<v;i++)
     {
-        if(!visited[i])
+        if(!visited[i] && (minVertex==-1 || dist[i]<dist[minVertex]))
         {
-            if(dist[i] < min)
-            {
-                min = i;
-            }
+            minVertex = i;
         }
     }
-    return min;
+    return minVertex;
 }
 
 
@@ -33,23 +30,24 @@ void dijkstraAlgo(int **edges ,int v , int src)
 
     for(int i = 0; i<v ; i++)
     {
-        if(!visited[i]){
-        int minVertex = getMinimum(dist , visited , v);
 
+        int minVertex = getMinimum(dist , visited , v);
+        cout<<minVertex<<" - "<<endl;
+        visited[minVertex] = true;
         for(int j = 0; j<v;j++)
         {
-            if(edges[i][j]!=0)
+            if(edges[minVertex][j]!=0 && !visited[j])
             {
-                int k = dist[i] + edges[i][j];
+                int k = dist[minVertex] + edges[minVertex][j];
                 if(k < dist[j])
                 {
                     dist[j] = k;
                 }
             }
         }
-        visited[i] = true;
+
     }
-    }
+    cout<<endl;
 
     cout<<"The minimum distances are : \n";
     for(int i = 0; i<v;i++)
