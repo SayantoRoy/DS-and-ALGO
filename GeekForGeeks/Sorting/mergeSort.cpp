@@ -3,47 +3,59 @@ using namespace std;
 
 
 
-void mergeIt(int *a, int *temp , int left , int mid , int right )
+void mergeIt(int *a, int temp[] , int left , int mid , int right )
 {
-    int k; int i; int j;
-    k =0;
-    i =0 ; j = 0;
-    int nl = left - mid;
-    int nr = mid+1 - right;
-    while(i<nl && j<nr)
-    {
-        if(a[i] < a[j])
-        {
-            temp[k] = a[i];
-            i++;
-            k++;
-        }
-        else
-        {
-            temp[k] = a[j];
-            j++;
-            k++;
-        }
-    }
+   int nl = mid - left +1;
+   int nr = right - mid ;
+   int lr[nl];
+   int rr[nr];
+   for(int i = 0 ; i< nl ;i++)
+   {
+       lr[i] = a[left+i];
+   }
+   for(int i = 0 ; i< nr ;i++)
+   {
+       rr[i] = a[mid+1+i];
+   }
 
-    while(i<nl)
-    {
-        temp[k] = a[i];
-        i++;
-        k++;
-    }
-    while(j<nr)
-    {
-        temp[k] = a[j];
-        j++;
-        k++;
-    }
+   int k = left;
+   int  i =0 ; int j =0;
 
-    return;
+   while(i<nl && j<nr)
+   {
+       if(lr[i]<rr[j])
+       {
+           temp[k] = lr[i];
+           i++;
+       }
+       if(lr[i]>rr[j])
+       {
+
+           sadnklasnd;
+           temp[k] = rr[j];
+           j++;
+       }
+       k++;
+   }
+
+   while(i<nl)
+   {
+       temp[k] = lr[i];
+       i++; k++;
+
+   }
+
+   while(j<nr)
+   {
+       temp[k] = rr[j];
+       j++; k++;
+   }
+
 }
 
-void mergeSort(int *a, int *temp, int left , int right)
+void mergeSort(int *a, int temp[], int left , int right)
 {
+
     int mid;
     if(left < right)
     {
@@ -59,6 +71,7 @@ int main()
     int n;
     cin>>n;
     int *a = new int[n];
+    int temp[n];
     for(int i =0 ;i<n;i++)
     {
         int k;
