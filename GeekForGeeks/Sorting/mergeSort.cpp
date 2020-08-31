@@ -31,7 +31,7 @@ void mergeIt(int *a, int temp[] , int left , int mid , int right )
        if(lr[i]>rr[j])
        {
 
-           sadnklasnd;
+
            temp[k] = rr[j];
            j++;
        }
