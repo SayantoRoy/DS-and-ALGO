@@ -1,22 +1,38 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void merges(int* a , int* b, int l ,int mid , int r)
+void merges(int* a, int l ,int mid , int r)
 {
     int nl = mid - l +1;
     int nr = r - mid;
+
+    int lA[nl]; int rA[nr];
+    for(int i = 0 ;i<nl;i++)
+    {
+        lA[i] = a[l+i];
+    }
+
+    for(int i = 0 ; i < nr; i++)
+    {
+        rA[i] = a[mid+1+i];
+    }
+
+
     int i = 0; int j =0; int k = l;
 
     while(i<nl && j<nr)
     {
-        if(a[l+i] < a[mid+1+j])
+        if(lA[i] < rA[j])
         {
-            b[k] = a[l+i];
+            //cout<<"If "<<a[l+i]<<" "<<a[mid+1+j]<<"b - "<<b[k]<<endl;
+            a[k] = lA[i];
             i++;
         }
         else
         {
-            b[k] = a[mid+1+j];
+
+            a[k] = rA[j];
+            //cout<<"else "<<a[l+i]<<" "<<a[mid+1+j]<<"b - "<<b[k]<<endl;
             j++;
         }
         k++;
@@ -24,26 +40,28 @@ void merges(int* a , int* b, int l ,int mid , int r)
 
     while(i<nl)
     {
-        b[k] = a[l+i];
+        a[k] = lA[i];
         i++;k++;
     }
     while(j<nr)
     {
-        b[k] = a[mid+1+j];
+        a[k] = rA[j];
         j++;k++;
     }
 
 }
 
-void mergeSort(int *a , int* b , int l , int r)
+void mergeSort(int *a  , int l , int r)
 {
     if(l < r)
     {
-        int mid = l + (r-1)/2;
-        mergeSort(a , b , l ,mid);
-        mergeSort(a , b , mid+1 , r);
-        merges(a , b , l , mid , r);
+        int mid = (l+r)/2;
+
+        mergeSort(a , l ,mid);
+        mergeSort(a , mid+1 , r);
+        merges(a , l , mid , r);
     }
+
 }
 
 int main()
@@ -57,13 +75,13 @@ int main()
         int k;
         cin>>k;
         a[i] = k;
-        t[i] = 0;
     }
 
-    mergeSort(a ,t ,0 , n-1);
+    mergeSort(a ,0 , n-1);
     for(int i =0 ;i<n;i++)
     {
-        cout<<t[i]<<" ";
+        cout<<a[i]<<" ";
     }
     return 0;
 }
+
